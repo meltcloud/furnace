@@ -1,0 +1,49 @@
+name: Build and release Melt Systemd sysext images
+on:
+  push:
+    tags:
+      - 'latest'
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+      # allow the action to create a release
+      contents: write
+    steps:
+      # checkout the sources
+      - uses: actions/checkout@v4
+        with:
+          path: furnace
+
+      # prepare build host
+      - name: install prerequisites
+        run: |
+          set -euxo pipefail
+
+          sudo apt update -qq && sudo apt install -yqq \
+            curl \
+            jq \
+            squashfs-tools \
+            xz-utils \
+            gawk
+
+      - name: build release artifacts
+        run: |
+          pushd furnace
+          ./release_build.sh
+
+      - name: delete previous latest release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pushd bakery
+          gh release delete latest --cleanup-tag
+
+      - name: create a new latest release with all artifacts
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: furnance/Release.md
+          files: |
+            bakery/SHA256SUMS
+            bakery/*.raw
+            bakery/*.conf
