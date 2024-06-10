@@ -1,8 +1,8 @@
 name: Build and release Melt Systemd sysext images
-on:
-  push:
-    tags:
-      - 'latest'
+on: workflow_dispatch
+#  push:
+#    tags:
+#      - 'latest'
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -30,7 +30,7 @@ jobs:
       - name: build release artifacts
         run: |
           pushd furnace
-          ./release_build.sh
+          ./build_release.sh
 
       - name: delete previous latest release
         env:
