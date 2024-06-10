@@ -1,0 +1,1 @@
+https://github.com/meltcloud/furnace/releases/download/latest/LICENSE.raw
