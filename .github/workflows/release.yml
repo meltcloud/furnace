@@ -42,7 +42,7 @@ jobs:
       - name: create a new latest release with all artifacts
         uses: softprops/action-gh-release@v1
         with:
-          body_path: furnance/Release.md
+          body_path: furnace/Release.md
           files: |
             furnace/SHA256SUMS
             furnace/*.raw
