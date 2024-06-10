@@ -36,7 +36,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pushd bakery
+          pushd furnace
           gh release delete latest --cleanup-tag
 
       - name: create a new latest release with all artifacts
@@ -44,6 +44,6 @@ jobs:
         with:
           body_path: furnance/Release.md
           files: |
-            bakery/SHA256SUMS
-            bakery/*.raw
-            bakery/*.conf
+            furnace/SHA256SUMS
+            furnace/*.raw
+            furance/*.conf
