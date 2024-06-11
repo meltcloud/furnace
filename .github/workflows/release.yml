@@ -47,12 +47,19 @@ jobs:
             furnace/SHA256SUMS
             furnace/*.raw
             furance/*.conf
+
+       - name: prepare r2 upload dir
+        run: |
+          mkdir r2
+          mv *.raw r2/
+          mv SHA256SUMS r2/
+
       - name: Upload files to R2
-        uses: magicwallet/r2-upload@main
+        uses: willfurstenau/r2-dir-upload@main
         with:
-          endpoint: ${{ secrets.R2_ENDPOINT_MELT_PUBLIC_ASSETS }}
-          access_key_id: ${{ secrets.R2_ACCESS_KEY_ID_MELT_PUBLIC_ASSETS }}
-          secret_access_key: ${{ secrets.R2_ACCESS_SECRET_KEY_MELT_PUBLIC_ASSETS }}
-          bucket: melt-public-assets
-          file: furnace/*.raw
+          accountid: ${{ secrets.R2_ACCOUNT_ID_MELT_PUBLIC_ASSETS }}
+          accesskeyid: ${{ secrets.R2_ACCESS_KEY_ID_MELT_PUBLIC_ASSETS }}
+          secretaccesskey: ${{ secrets.R2_ACCESS_SECRET_KEY_MELT_PUBLIC_ASSETS }}
+          bucket: 'melt-public-assets'
+          source: 'furnace/r2'
           destination: '/sysext'
