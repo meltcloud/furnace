@@ -50,6 +50,7 @@ jobs:
 
       - name: prepare r2 upload dir
         run: |
+          pushd furnace
           mkdir r2
           mv *.raw r2
           mv SHA256SUMS r2
