@@ -48,11 +48,11 @@ jobs:
             furnace/*.raw
             furance/*.conf
 
-       - name: prepare r2 upload dir
+      - name: prepare r2 upload dir
         run: |
           mkdir r2
-          mv *.raw r2/
-          mv SHA256SUMS r2/
+          mv *.raw r2
+          mv SHA256SUMS r2
 
       - name: Upload files to R2
         uses: willfurstenau/r2-dir-upload@main
