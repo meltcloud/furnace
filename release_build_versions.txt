@@ -1,5 +1,6 @@
 # kubernetes releases
 
+kubernetes-v1.28.9
 kubernetes-v1.29.2
 kubernetes-v1.29.4
 
