@@ -64,6 +64,9 @@ for image in "${images[@]}"; do
     echo "  ## Building ${target}."
     ARCH="${arch}" "./create_${component}_sysext.sh" "${version}" "${component}"
     mv "${component}.raw" "${target}"
+    orig_target=${target}
+    target=echo ${target} | sed -e 's/x86-64/amd64/'
+    mv "${orig_target}" "${target}" 
     echo "* ${target}" >> Release.md
   done
   streams+=("${component}:-@v")
