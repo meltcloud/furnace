@@ -10,3 +10,4 @@ kubernetes-v1.29.4
 melt-v0.0.0
 melt-v0.1.0
 melt-v0.2.0
+melt-v0.2.1
