@@ -27,7 +27,7 @@ rm -rf melt-agent
 
 # install kubernetes binaries.
 curl --fail --silent --show-error --location \
-  --output melt-agent "https://dl.meltcloud.io/agent/melt-agent-linux-${ARCH}" 
+  --output melt-agent "https://dl.meltcloud.io/melt-agent/${VERSION}/melt-agent-linux-${ARCH}" 
 
 rm -rf "${SYSEXTNAME}"
 mkdir -p "${SYSEXTNAME}"/usr/bin
